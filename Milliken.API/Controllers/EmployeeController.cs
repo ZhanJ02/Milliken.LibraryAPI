@@ -35,6 +35,12 @@ namespace Milliken.LibraryAPI.Controllers
             return _employeeService.ListEmployees();
         }
 
+        [HttpPost("List All Employees by Position")]
+        public List<Employee> ListAllEmployeesByPosition(EmployeePositions position)
+        {
+            return _employeeService.ListAllEmployeesByPosition(position);
+        }
+
         [HttpGet("Total Employees")]
         public int TotalEmployees()
         {

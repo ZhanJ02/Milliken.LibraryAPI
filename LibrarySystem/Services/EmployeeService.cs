@@ -2,6 +2,7 @@
 using Milliken.LibraryAPI.Models;
 using Milliken.LibraryAPI.Interfaces;
 using static System.Reflection.Metadata.BlobBuilder;
+using System.Xml.Linq;
 
 namespace Milliken.LibraryAPI.Services
 {
@@ -73,6 +74,20 @@ namespace Milliken.LibraryAPI.Services
             var employee = new Employee(name, position, age, employeeID);
             Employees.Add(employee);
             return Employees;
+        }
+        public List<Employee> ListAllEmployeesByPosition(EmployeePositions position)
+        {
+            List<Employee> samePosition = new List<Employee>();
+            _log.LogInformation($"{position}s");
+            foreach (var employee in Employees)
+            {
+                if (employee.Position == position)
+                {
+                    _log.LogInformation($"-{employee.Name}");
+                    samePosition.Add(employee);
+                }
+            }
+            return samePosition;
         }
         public int TotalEmployees()
         {
