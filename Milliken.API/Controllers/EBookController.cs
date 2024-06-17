@@ -21,7 +21,7 @@ namespace Milliken.LibraryAPI.Controllers
             return _eBookService.ListEBooks();
         }
 
-        [HttpDelete("EBooks in Library/{eTitle}")]
+        [HttpDelete("Deleting Ebooks by Title")]
         public List<EBook> DeleteEBook(string eTitle)
         {
             _eBookService.RemoveEBooksByTitle(eTitle);

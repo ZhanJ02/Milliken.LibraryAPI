@@ -1,8 +1,6 @@
-﻿using System.Collections;
-using Milliken.LibraryAPI.Models;
+﻿using Milliken.LibraryAPI.Models;
 using Milliken.LibraryAPI.Interfaces;
 using Microsoft.Extensions.Logging;
-using static System.Reflection.Metadata.BlobBuilder;
 
 namespace Milliken.LibraryAPI.Services
 {
@@ -75,7 +73,10 @@ namespace Milliken.LibraryAPI.Services
             EBooks.Add(eBook);
             return EBooks;
         }
-        public int TotalEBooks() => EBooks.Count;
-
+        public int TotalEBooks()
+        {
+            _log.LogInformation($"Number of electronic books in library: {EBooks.Count}");
+            return EBooks.Count;
+        }
     }
 }

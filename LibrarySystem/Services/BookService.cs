@@ -81,10 +81,15 @@ namespace Milliken.LibraryAPI.Services
             return Books;
         }
 
-       
 
-        // Total Books and EBooks
-        public int TotalBooks() => Books.Count;
+
+        // Total Books
+        public int TotalBooks()
+        {
+            _log.LogInformation($"Number of books in library: {Books.Count}");
+            return Books.Count;
+        }
+
     }
 
 }
