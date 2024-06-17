@@ -1,8 +1,6 @@
 ﻿using Microsoft.Extensions.Logging;
 using Milliken.LibraryAPI.Models;
 using Milliken.LibraryAPI.Interfaces;
-using static System.Reflection.Metadata.BlobBuilder;
-using System.Xml.Linq;
 
 namespace Milliken.LibraryAPI.Services
 {
@@ -47,11 +45,11 @@ namespace Milliken.LibraryAPI.Services
         }
 
         // Find EBook
-        public Employee FindEmployeeByName(string name)
+        public Employee FindEmployeeByID(int id)
         {
             foreach (var employee in Employees)
             {
-                if (employee.Name.Equals(name, StringComparison.OrdinalIgnoreCase))
+                if (employee.EmployeeID == id)
                 {
                     return employee;
                 }
@@ -59,9 +57,9 @@ namespace Milliken.LibraryAPI.Services
             return null;
         }
 
-        public List<Employee> RemoveEmployeeByName(string name)
+        public List<Employee> RemoveEmployeeByID(int id)
         {
-            var employee = FindEmployeeByName(name);
+            var employee = FindEmployeeByID(id);
             if (employee != null)
             {
                 Employees.Remove(employee);

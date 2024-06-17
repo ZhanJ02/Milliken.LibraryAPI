@@ -21,10 +21,10 @@ namespace Milliken.LibraryAPI.Controllers
             return _employeeService.ListEmployees();
         }
 
-        [HttpDelete("Deleting Employees by Name")]
-        public List<Employee> DeleteEmployees(string name)
+        [HttpDelete("Deleting Employees by ID")]
+        public List<Employee> DeleteEmployees(int id)
         {
-            _employeeService.RemoveEmployeeByName(name);
+            _employeeService.RemoveEmployeeByID(id);
             return _employeeService.ListEmployees();
         }
 
