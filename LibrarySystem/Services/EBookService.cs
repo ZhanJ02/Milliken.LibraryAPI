@@ -9,14 +9,13 @@ namespace Milliken.LibraryAPI.Services
     public class EBookService : IEBookService
     {
         private readonly Library _library;
-        private readonly ILogger<BookService> _log;
+        private readonly ILogger<EBookService> _log;
         public List<EBook> EBooks { get; set; } = new List<EBook>();
         // Constructor DI
-        public EBookService(Library library, ILogger<BookService> log)
+        public EBookService(Library library, ILogger<EBookService> log)
         {
             _library = library;
             _log = log;
-
             InitializeEBookData();
         }
         
