@@ -10,6 +10,8 @@ builder.Services.AddControllers();
 // Singleton so that a single instance is created for the entire application lifecycle *
 builder.Services.AddSingleton(new Library("Milliken", "Spartanburg"));
 builder.Services.AddSingleton<IBookService, BookService>();
+builder.Services.AddSingleton<IEBookService, EBookService>();
+
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddLogging(loggingBuilder =>
