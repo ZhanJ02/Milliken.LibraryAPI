@@ -8,15 +8,14 @@ namespace Milliken.LibraryAPI.Controllers
     [Route("[controller]")]
     public class BookController : ControllerBase
     {
-        private readonly ILibraryService _libraryService;
+        private readonly IBookService _libraryService;
 
-        public BookController(ILibraryService libraryService)
+        public BookController(IBookService libraryService)
         {
             _libraryService = libraryService;
         }
 
         [HttpGet("Books in Library")]
-        [Route("get_books")]
         public List<Book> GetBooks()
         {
             return _libraryService.ListBooks();
@@ -24,8 +23,6 @@ namespace Milliken.LibraryAPI.Controllers
         }
 
         [HttpDelete("Books in Library/{title}")]
-        [Route("remove_books")]
-
         public List<Book> DeleteBook(string title)
         {
             _libraryService.RemoveBooksByTitle(title);
@@ -33,11 +30,16 @@ namespace Milliken.LibraryAPI.Controllers
         }
 
         [HttpPost("Add Books to Library")]
-        [Route("create_books")]
         public List<Book> AddBook(string author, string title, int pages, int yearPublished)
         {
             _libraryService.AddBooks(author, title, pages, yearPublished);
             return _libraryService.ListBooks();
+        }
+
+        [HttpGet("Total Books")]
+        public int TotalNumberOfBooks()
+        {
+            return _libraryService.TotalBooks();
         }
     }
 }

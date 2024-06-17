@@ -8,30 +8,20 @@ namespace Milliken.LibraryAPI.Controllers
     [Route("[controller]")]
     public class EBookController : ControllerBase
     {
-        private readonly ILibraryService _libraryService;
+        private readonly IEBookService _libraryService;
 
-        public EBookController(ILibraryService libraryService)
+        public EBookController(IEBookService libraryService)
         {
             _libraryService = libraryService;
         }
 
         [HttpGet("EBooks in Library")]
-        [Route("get_ebooks")]
         public List<EBook> GetEBooks()
         {
             return _libraryService.ListEBooks();
         }
-        
-        /*
-        [HttpGet("Total Books and EBooks")]
-        public int TotalNumberOfAllBooks()
-        {
-            return _libraryService.TotalBooksAndEBooks();
-        }
-        */
 
         [HttpDelete("EBooks in Library/{eTitle}")]
-        [Route("remove_ebooks")]
         public List<EBook> DeleteEBook(string eTitle)
         {
             _libraryService.RemoveEBooksByTitle(eTitle);
@@ -39,11 +29,16 @@ namespace Milliken.LibraryAPI.Controllers
         }
 
         [HttpPost("Add Electronic Books to Library")]
-        [Route("create_ebooks")]
         public List<EBook> AddEBook(string author, string title, int pages, int yearPublished, double fileSize)
         {
             _libraryService.AddEBooks(author, title, pages, yearPublished, fileSize);
             return _libraryService.ListEBooks();
+        }
+
+        [HttpGet("Total EBooks")]
+        public int TotalNumberOfEBooks()
+        {
+            return _libraryService.TotalEBooks();
         }
 
     }
