@@ -1,6 +1,8 @@
 ﻿using Milliken.LibraryAPI.Models;
 using Milliken.LibraryAPI.Interfaces;
 using Microsoft.Extensions.Logging;
+using static System.Reflection.Metadata.BlobBuilder;
+using System;
 
 namespace Milliken.LibraryAPI.Services
 {
@@ -9,6 +11,20 @@ namespace Milliken.LibraryAPI.Services
         private readonly Library _library;
         private readonly ILogger<EBookService> _log;
         public List<EBook> EBooks { get; set; } = new List<EBook>();
+        private readonly Random _random = new Random();
+        private readonly List<EBook> AllEBooks = new List<EBook>()
+        {
+             new("Harry Potter and the Goblet of Fire", "J.K. Rowling", 550, 2000, 2.5),
+             new("To Kill a Mockingbird", "Harper Lee", 320, 1960, 2.9),
+             new("1984", "George Orwell", 398, 1949, 1.9),
+             new("The Stranger", "Albert Camus", 320, 1942, 1.7),
+             new("Harry Potter and the Sorcerer's Stone", "J.K. Rowling", 311, 1997, 3.9),
+             new("The Hobbit", "J. R. R. Tolkien", 346, 1937, 1.5),
+             new("The Lightning Thief", "Rick Riordan", 380, 2005, 2.0),
+             new("The Martian", "Andy Weir", 450, 2011, 2.1),
+             new("Precious", "Sapphire", 241, 1996, 1.2),
+             new("Beloved", "Toni Morrison", 289, 1987, 1.4)
+        };
         // Constructor DI
         public EBookService(Library library, ILogger<EBookService> log)
         {
@@ -19,18 +35,13 @@ namespace Milliken.LibraryAPI.Services
         
         public void InitializeEBookData()
         {
-            // Create EBooks
-            EBook ebook1 = new("The Hobbit", "J. R. R. Tolkien", 346, 1937, 1.5);
-            EBook ebook2 = new("The Lightning Thief", "Rick Riordan", 380, 2005, 2.0);
-            EBook ebook3 = new("The Martian", "Andy Weir", 450, 2011, 2.1);
-            EBook ebook4 = new("Precious", "Sapphire", 241, 1996, 1.2);
-            EBook ebook5 = new("Beloved", "Toni Morrison", 289, 1987, 1.4);
-
-            EBooks.Add(ebook1);
-            EBooks.Add(ebook2);
-            EBooks.Add(ebook3);
-            EBooks.Add(ebook4);
-            EBooks.Add(ebook5);
+            for (int i = 0; i < 5; i++)
+            {
+                int randomIndex = _random.Next(0, AllEBooks.Count);
+                EBook selectedEBook = AllEBooks[randomIndex];
+                EBooks.Add(selectedEBook);
+                AllEBooks.Remove(selectedEBook);
+            }
         }
         // List EBooks
         public List<EBook> ListEBooks()

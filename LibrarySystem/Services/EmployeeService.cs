@@ -8,7 +8,21 @@ namespace Milliken.LibraryAPI.Services
     {
         private readonly Library _library;
         private readonly ILogger<EmployeeService> _log;
+        private readonly Random _random = new Random();
         public List<Employee> Employees { get; set; } = new List<Employee>();
+        private readonly List<Employee> AllEmployees = new List<Employee>()
+        {
+             new("Ethan", EmployeePositions.Manager, 29, 1),
+             new("Sophia", EmployeePositions.Manager, 28, 2),
+             new("John", EmployeePositions.Librarian, 31, 3),
+             new("Hailey", EmployeePositions.Librarian, 28, 4),
+             new("Justin", EmployeePositions.Assistant, 29, 5),
+             new("Jane", EmployeePositions.Assistant, 30, 6),
+             new("Harry", EmployeePositions.Intern, 21, 7),
+             new("Elizabeth", EmployeePositions.Intern, 21, 8),
+             new("Sam", EmployeePositions.Intern, 22, 9),
+             new("Clarissa", EmployeePositions.Intern, 23, 10)
+        };
         // Constructor DI
         public EmployeeService(Library library, ILogger<EmployeeService> log)
         {
@@ -19,18 +33,13 @@ namespace Milliken.LibraryAPI.Services
 
         public void InitializeEmployeeData()
         {
-            // Create EBooks
-            Employee employee1 = new("Ethan", EmployeePositions.Manager, 29, 001);
-            Employee employee2 = new("Clarissa", EmployeePositions.Librarian, 31, 002);
-            Employee employee3 = new("Sam", EmployeePositions.Assistant, 26, 003);
-            Employee employee4 = new("Sophie", EmployeePositions.Intern, 22, 004);
-            Employee employee5 = new("Jessie", EmployeePositions.Intern, 22, 005);
-
-            Employees.Add(employee1);
-            Employees.Add(employee2);
-            Employees.Add(employee3);
-            Employees.Add(employee4);
-            Employees.Add(employee5);
+            for (int i = 0; i < 7; i++)
+            {
+                int randomIndex = _random.Next(0, AllEmployees.Count);
+                Employee selectedEmployee = AllEmployees[randomIndex];
+                Employees.Add(selectedEmployee);
+                AllEmployees.Remove(selectedEmployee);
+            }
         }
         // List EBooks
         public List<Employee> ListEmployees()
