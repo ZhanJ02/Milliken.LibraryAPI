@@ -47,7 +47,7 @@ namespace Milliken.LibrarySystem.Services
             _log.LogInformation($"EBooks in {_library.Name}:");
             foreach (var eBook in EBooks)
             {
-                _log.LogInformation($"- {eBook.Title} by {eBook.Author} published in {eBook.YearPublished}");
+                _log.LogInformation($"- {eBook.Title} by {eBook.Author} published in {eBook.YearPublished}, Is Available to Checkout: {eBook.IsAvailable}");
             }
             _log.LogInformation("\n -------------------------------------- \n");
             return EBooks;
@@ -81,6 +81,36 @@ namespace Milliken.LibrarySystem.Services
             var eBook = new EBook(title, author, pages, yearPublished, fileSize, isAvailable);
             EBooks.Add(eBook);
             return EBooks;
+        }
+        public EBook CheckoutEBook(string title)
+        {
+            var eBook = FindEBookByTitle(title);
+            if (eBook != null && eBook.IsAvailable == true)
+            {
+                eBook.IsAvailable = false;
+                _log.LogInformation($"{eBook.Title} is now checked out");
+                return eBook;
+            }
+            else
+            {
+                _log.LogInformation($"{title} is not available.");
+            }
+            return null;
+        }
+        public EBook ReturnEBook(string title)
+        {
+            var eBook = FindEBookByTitle(title);
+            if (eBook != null && eBook.IsAvailable == false)
+            {
+                eBook.IsAvailable = true;
+                _log.LogInformation($"{title} has been returned");
+            }
+            else
+            {
+                _log.LogInformation($"{title} is already in library");
+            }
+            return null;
+
         }
         public int TotalEBooks()
         {

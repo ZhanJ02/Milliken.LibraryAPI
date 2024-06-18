@@ -48,7 +48,7 @@ namespace Milliken.LibrarySystem.Services
             _log.LogInformation($"Movies in {_library.Name}:");
             foreach (var movie in Movies)
             {
-                _log.LogInformation($"- {movie.Name}: Genre: {movie.Genre}, Duration in Minutes: {movie.DurationInMinutes}");
+                _log.LogInformation($"- {movie.Name}: Genre: {movie.Genre}, Duration in Minutes: {movie.DurationInMinutes}, Is Available to Checkout: {movie.IsAvailable}");
             }
             _log.LogInformation("\n -------------------------------------- \n");
             return Movies;
@@ -96,6 +96,36 @@ namespace Milliken.LibrarySystem.Services
                 }
             }
             return sameGenre;
+        }
+        public Movie CheckoutMovie(string name)
+        {
+            var movie = FindMovieByName(name);
+            if (movie != null && movie.IsAvailable == true)
+            {
+                movie.IsAvailable = false;
+                _log.LogInformation($"{movie.Name} is now checked out");
+                return movie;
+            }
+            else
+            {
+                _log.LogInformation($"{name} is not available.");
+            }
+            return null;
+        }
+        public Movie ReturnMovie(string name)
+        {
+            var movie = FindMovieByName(name);
+            if (movie != null && movie.IsAvailable == false)
+            {
+                movie.IsAvailable = true;
+                _log.LogInformation($"{name} has been returned");
+            }
+            else
+            {
+                _log.LogInformation($"{name} is already in library");
+            }
+            return null;
+
         }
         public int TotalMovies()
         {

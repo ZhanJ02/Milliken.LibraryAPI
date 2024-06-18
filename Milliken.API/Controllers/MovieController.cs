@@ -41,6 +41,18 @@ namespace Milliken.LibraryAPI.Controllers
             return _movieService.ListAllMoviesByGenre(genre);
         }
 
+        [HttpPost("Checkout Movies from Library")]
+        public Movie CheckoutMovie(string name)
+        {
+            return _movieService.CheckoutMovie(name);
+        }
+
+        [HttpPost("Return Movies to Library")]
+        public Movie ReturnMovie(string name)
+        {
+            return _movieService.ReturnMovie(name);
+        }
+
         [HttpGet("Total Movies")]
         public int TotalEmployees()
         {

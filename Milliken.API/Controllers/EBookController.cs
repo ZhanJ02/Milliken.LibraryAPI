@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Milliken.LibrarySystem.Interfaces;
 using Milliken.LibrarySystem.Models;
+using Milliken.LibrarySystem.Services;
 
 namespace Milliken.LibraryAPI.Controllers
 {
@@ -33,6 +34,18 @@ namespace Milliken.LibraryAPI.Controllers
         {
             _eBookService.AddEBooks(author, title, pages, yearPublished, fileSize, isAvailable);
             return _eBookService.ListEBooks();
+        }
+
+        [HttpPost("Checkout EBooks from Library")]
+        public EBook CheckoutEBook(string title)
+        {
+            return _eBookService.CheckoutEBook(title);
+        }
+
+        [HttpPost("Return EBooks to Library")]
+        public Book ReturnBook(string title)
+        {
+            return _eBookService.ReturnEBook(title);
         }
 
         [HttpGet("Total EBooks")]

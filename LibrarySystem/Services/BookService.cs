@@ -50,7 +50,7 @@ namespace Milliken.LibrarySystem.Services
             _log.LogInformation($"Books in {_library.Name}:");
             foreach (var book in Books)
             {
-                _log.LogInformation($"- {book.Title} by {book.Author} published in {book.YearPublished}");
+                _log.LogInformation($"- {book.Title} by {book.Author} published in {book.YearPublished}, Is Available to Checkout: {book.IsAvailable}");
             }
             _log.LogInformation("\n |||||||||||||||||||||||||||||||||||||| \n");
             return Books;
@@ -69,8 +69,6 @@ namespace Milliken.LibrarySystem.Services
             return null;
         }
 
-       
-
         // Remove Book
         public List<Book> RemoveBooksByTitle(string title)
         {
@@ -82,7 +80,6 @@ namespace Milliken.LibrarySystem.Services
             return Books;
         }
 
-       
         // Adding Books and EBooks
         public List<Book> AddBooks(string title, string author, int pages, int yearPublished, bool isAvailable)
         {
@@ -90,9 +87,36 @@ namespace Milliken.LibrarySystem.Services
             Books.Add(book);
             return Books;
         }
+        public Book CheckoutBook(string title)
+        {
+            var book = FindBookByTitle(title);
+            if (book != null && book.IsAvailable == true)
+            {
+                book.IsAvailable = false;
+                _log.LogInformation($"{book.Title} is now checked out");
+                return book;
+            }
+            else
+            {
+                _log.LogInformation($"{title} is not available.");
+            }
+            return null;
+        }
+        public Book ReturnBook(string title)
+        {
+            var book = FindBookByTitle(title);
+            if (book != null && book.IsAvailable == false)
+            {
+                book.IsAvailable = true;
+                _log.LogInformation($"{title} has been returned");
+            }
+            else
+            {
+                _log.LogInformation($"{title} is already in library");
+            }
+            return null;
 
-
-
+        }
         // Total Books
         public int TotalBooks()
         {
