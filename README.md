@@ -1,0 +1,1 @@
+Created a Restful API with a base library model project with books, ebooks, movies, and employees. Implemented services with interfaces and DI; added these services to separate controllers to display these functions using Swagger. 
