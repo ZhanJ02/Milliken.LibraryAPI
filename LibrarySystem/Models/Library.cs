@@ -8,7 +8,6 @@ namespace Milliken.LibrarySystem.Models
         // Properties
         public string Name { get; set; }
         public string Location { get; set; }
-
         // Parameterized Constructor
         public Library(string name, string location)
         {

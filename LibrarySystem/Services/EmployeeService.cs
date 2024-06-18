@@ -21,7 +21,9 @@ namespace Milliken.LibrarySystem.Services
              new("Harry", EmployeePositions.Intern, 21, 7),
              new("Elizabeth", EmployeePositions.Intern, 21, 8),
              new("Sam", EmployeePositions.Intern, 22, 9),
-             new("Clarissa", EmployeePositions.Intern, 23, 10)
+             new("Clarissa", EmployeePositions.Intern, 23, 10),
+             new("Jack", EmployeePositions.Intern, 24, 11),
+             new("Emily", EmployeePositions.Intern, 23, 12)
         };
         // Constructor DI
         public EmployeeService(Library library, ILogger<EmployeeService> log)
@@ -33,7 +35,7 @@ namespace Milliken.LibrarySystem.Services
 
         public void InitializeEmployeeData()
         {
-            for (int i = 0; i < 7; i++)
+            for (int i = 0; i < 9; i++)
             {
                 int randomIndex = _random.Next(0, AllEmployees.Count);
                 Employee selectedEmployee = AllEmployees[randomIndex];
