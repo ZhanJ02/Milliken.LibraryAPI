@@ -1,6 +1,6 @@
-﻿using Milliken.LibraryAPI.Models;
+﻿using Milliken.LibrarySystem.Models;
 
-namespace Milliken.LibraryAPI.Interfaces
+namespace Milliken.LibrarySystem.Interfaces
 {
     public interface IBookService
     {

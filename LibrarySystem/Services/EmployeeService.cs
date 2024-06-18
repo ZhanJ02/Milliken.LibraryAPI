@@ -1,8 +1,8 @@
 ﻿using Microsoft.Extensions.Logging;
-using Milliken.LibraryAPI.Models;
-using Milliken.LibraryAPI.Interfaces;
+using Milliken.LibrarySystem.Models;
+using Milliken.LibrarySystem.Interfaces;
 
-namespace Milliken.LibraryAPI.Services
+namespace Milliken.LibrarySystem.Services
 {
     public class EmployeeService : IEmployeeService
     {

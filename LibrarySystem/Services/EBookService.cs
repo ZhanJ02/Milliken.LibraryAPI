@@ -1,10 +1,8 @@
-﻿using Milliken.LibraryAPI.Models;
-using Milliken.LibraryAPI.Interfaces;
+﻿using Milliken.LibrarySystem.Models;
+using Milliken.LibrarySystem.Interfaces;
 using Microsoft.Extensions.Logging;
-using static System.Reflection.Metadata.BlobBuilder;
-using System;
 
-namespace Milliken.LibraryAPI.Services
+namespace Milliken.LibrarySystem.Services
 {
     public class EBookService : IEBookService
     {

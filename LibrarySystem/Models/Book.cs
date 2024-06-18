@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Milliken.LibraryAPI.Models
+namespace Milliken.LibrarySystem.Models
 {
     public class Book
     {

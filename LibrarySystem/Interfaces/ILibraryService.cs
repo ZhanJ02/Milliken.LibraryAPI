@@ -1,8 +1,8 @@
-﻿using Milliken.LibrarySystem.Models;
+﻿/*using Milliken.LibrarySystem.Models;
 
 namespace Milliken.LibrarySystem.Interfaces
 {
-    public interface IEmployeeService
+    public interface ILibraryService
     {
         void InitializeEmployeeData();
         List<Employee> ListEmployees();
@@ -13,3 +13,4 @@ namespace Milliken.LibrarySystem.Interfaces
         int TotalEmployees();
     }
 }
+*/

@@ -1,4 +1,4 @@
-﻿namespace Milliken.LibraryAPI.Models
+﻿namespace Milliken.LibrarySystem.Models
 {
     public enum EmployeePositions
     {

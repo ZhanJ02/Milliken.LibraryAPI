@@ -1,6 +1,6 @@
-using Milliken.LibraryAPI.Interfaces;
-using Milliken.LibraryAPI.Services;
-using Milliken.LibraryAPI.Models;
+using Milliken.LibrarySystem.Interfaces;
+using Milliken.LibrarySystem.Services;
+using Milliken.LibrarySystem.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 

@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Milliken.LibraryAPI.Interfaces;
-using Milliken.LibraryAPI.Models;
+using Milliken.LibrarySystem.Interfaces;
+using Milliken.LibrarySystem.Models;
 
 namespace Milliken.LibraryAPI.Controllers
 {

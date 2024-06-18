@@ -1,49 +1,44 @@
-﻿using System.Collections;
+﻿/*
 using Milliken.LibrarySystem.Models;
 using Milliken.LibrarySystem.Interfaces;
 using Microsoft.Extensions.Logging;
 using System.Net.Http.Headers;
 
-namespace Milliken.LibrarySystem.Services
+namespace Milliken.LibraryAPI.Services
 {
-    public class BookService : IBookService
+    public class LibraryService : ILibraryService
     {
         private readonly Library _library;
         private readonly ILogger<BookService> _log;
         private readonly Random _random = new Random();
-        private readonly List<Book> AllBooks = new List<Book>()
+        private readonly List<Library> AllLibraries = new List<Library>()
         {
-             new("Harry Potter and the Goblet of Fire", "J.K. Rowling", 550, 2000),
-             new("To Kill a Mockingbird", "Harper Lee", 320, 1960),
-             new("1984", "George Orwell", 398, 1949),
-             new("The Stranger", "Albert Camus", 320, 1942),
-             new("Harry Potter and the Sorcerer's Stone", "J.K. Rowling", 311, 1997),
-             new("The Hobbit", "J. R. R. Tolkien", 346, 1937),
-             new("The Lightning Thief", "Rick Riordan", 380, 2005),
-             new("The Martian", "Andy Weir", 450, 2011),
-             new("Precious", "Sapphire", 241, 1996),
-             new("Beloved", "Toni Morrison", 289, 1987)
+             new("Milliken Library", "Spartanburg"),
+             new("Converse Library", "Spartanburg"),
+             new("UofSC Upstate Library", "Spartanburg"),
+             new("Anderson Library", "Spartanburg"),
+             new("Greenville Library", "Greenville"),
         };
-      
-        public List<Book> Books { get; set; } = new List<Book>();
+
+        public List<Library> Libraries { get; set; } = new List<Library>();
         // Constructor DI
-        public BookService(Library library, ILogger<BookService> log)
+        public LibraryService(Library library, ILogger<BookService> log)
         {
             _library = library;
             _log = log;
-            InitializeBookData();
+            InitializeLibraryData();
         }
-        public void InitializeBookData()
+        public void InitializeLibraryData()
         {
-            for (int i = 0; i < 5; i++)
+            for (int i = 0; i < 3; i++)
             {
-                int randomIndex = _random.Next(0, AllBooks.Count);
-                Book selectedBook = AllBooks[randomIndex];
-                Books.Add(selectedBook);
-                AllBooks.Remove(selectedBook);
+                int randomIndex = _random.Next(0, AllLibraries.Count);
+                Library selectedLibraries = AllLibraries[randomIndex];
+                Libraries.Add(selectedLibraries);
+                AllLibraries.Remove(selectedLibraries);
             }
         }
-       
+
         // List Books
         public List<Book> ListBooks()
         {
@@ -55,7 +50,7 @@ namespace Milliken.LibrarySystem.Services
             _log.LogInformation("\n |||||||||||||||||||||||||||||||||||||| \n");
             return Books;
         }
-     
+
         // Find Book
         public Book FindBookByTitle(string title)
         {
@@ -69,7 +64,7 @@ namespace Milliken.LibrarySystem.Services
             return null;
         }
 
-       
+
 
         // Remove Book
         public List<Book> RemoveBooksByTitle(string title)
@@ -82,7 +77,7 @@ namespace Milliken.LibrarySystem.Services
             return Books;
         }
 
-       
+
         // Adding Books and EBooks
         public List<Book> AddBooks(string title, string author, int pages, int yearPublished)
         {
@@ -103,3 +98,4 @@ namespace Milliken.LibrarySystem.Services
     }
 
 }
+*/
