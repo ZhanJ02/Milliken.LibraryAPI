@@ -29,9 +29,9 @@ namespace Milliken.LibraryAPI.Controllers
         }
 
         [HttpPost("Add Electronic Books to Library")]
-        public List<EBook> AddEBook(string author, string title, int pages, int yearPublished, double fileSize)
+        public List<EBook> AddEBook(string author, string title, int pages, int yearPublished, double fileSize, bool isAvailable)
         {
-            _eBookService.AddEBooks(author, title, pages, yearPublished, fileSize);
+            _eBookService.AddEBooks(author, title, pages, yearPublished, fileSize, isAvailable);
             return _eBookService.ListEBooks();
         }
 

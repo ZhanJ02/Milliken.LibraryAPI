@@ -13,16 +13,16 @@ namespace Milliken.LibrarySystem.Services
         private readonly Random _random = new Random();
         private readonly List<Book> AllBooks = new List<Book>()
         {
-             new("Harry Potter and the Goblet of Fire", "J.K. Rowling", 550, 2000),
-             new("To Kill a Mockingbird", "Harper Lee", 320, 1960),
-             new("1984", "George Orwell", 398, 1949),
-             new("The Stranger", "Albert Camus", 320, 1942),
-             new("Harry Potter and the Sorcerer's Stone", "J.K. Rowling", 311, 1997),
-             new("The Hobbit", "J. R. R. Tolkien", 346, 1937),
-             new("The Lightning Thief", "Rick Riordan", 380, 2005),
-             new("The Martian", "Andy Weir", 450, 2011),
-             new("Precious", "Sapphire", 241, 1996),
-             new("Beloved", "Toni Morrison", 289, 1987)
+             new("Harry Potter and the Goblet of Fire", "J.K. Rowling", 550, 2000, true),
+             new("To Kill a Mockingbird", "Harper Lee", 320, 1960, true),
+             new("1984", "George Orwell", 398, 1949, false),
+             new("The Stranger", "Albert Camus", 320, 1942, false),
+             new("Harry Potter and the Sorcerer's Stone", "J.K. Rowling", 311, 1997, true),
+             new("The Hobbit", "J. R. R. Tolkien", 346, 1937, true),
+             new("The Lightning Thief", "Rick Riordan", 380, 2005, false),
+             new("The Martian", "Andy Weir", 450, 2011, false),
+             new("Precious", "Sapphire", 241, 1996, true),
+             new("Beloved", "Toni Morrison", 289, 1987, true)
         };
       
         public List<Book> Books { get; set; } = new List<Book>();
@@ -84,9 +84,9 @@ namespace Milliken.LibrarySystem.Services
 
        
         // Adding Books and EBooks
-        public List<Book> AddBooks(string title, string author, int pages, int yearPublished)
+        public List<Book> AddBooks(string title, string author, int pages, int yearPublished, bool isAvailable)
         {
-            var book = new Book(title, author, pages, yearPublished);
+            var book = new Book(title, author, pages, yearPublished, isAvailable);
             Books.Add(book);
             return Books;
         }

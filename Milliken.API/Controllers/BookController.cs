@@ -30,9 +30,9 @@ namespace Milliken.LibraryAPI.Controllers
         }
 
         [HttpPost("Add Books to Library")]
-        public List<Book> AddBook(string author, string title, int pages, int yearPublished)
+        public List<Book> AddBook(string author, string title, int pages, int yearPublished, bool isAvailable)
         {
-            bookService.AddBooks(author, title, pages, yearPublished);
+            bookService.AddBooks(author, title, pages, yearPublished, isAvailable);
             return bookService.ListBooks();
         }
 

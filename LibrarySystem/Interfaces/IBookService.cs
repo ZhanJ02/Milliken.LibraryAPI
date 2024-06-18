@@ -9,7 +9,7 @@ namespace Milliken.LibrarySystem.Interfaces
         List<Book> ListBooks();
         Book FindBookByTitle(string title);
         List<Book> RemoveBooksByTitle(string title);
-        List<Book> AddBooks(string title, string author, int pages, int yearPublished);
+        List<Book> AddBooks(string title, string author, int pages, int yearPublished, bool isAvailable);
         int TotalBooks();
     }
 }

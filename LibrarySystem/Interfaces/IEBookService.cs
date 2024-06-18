@@ -9,7 +9,7 @@ namespace Milliken.LibrarySystem.Interfaces
         List<EBook> ListEBooks();
         EBook FindEBookByTitle(string title);
         List<EBook> RemoveEBooksByTitle(string title);
-        List<EBook> AddEBooks(string title, string author, int pages, int yearPublished, double fileSize);
+        List<EBook> AddEBooks(string title, string author, int pages, int yearPublished, double fileSize, bool isAvailable);
         int TotalEBooks();
 
     }

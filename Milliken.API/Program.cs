@@ -12,6 +12,7 @@ builder.Services.AddSingleton(new Library("Milliken", "Spartanburg"));
 builder.Services.AddSingleton<IBookService, BookService>();
 builder.Services.AddSingleton<IEBookService, EBookService>();
 builder.Services.AddSingleton<IEmployeeService, EmployeeService>();
+builder.Services.AddSingleton<IMovieService, MovieService>();
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
