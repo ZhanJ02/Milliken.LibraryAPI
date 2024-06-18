@@ -84,6 +84,7 @@ namespace Milliken.LibrarySystem.Services
             Employees.Add(employee);
             return Employees;
         }
+
         public List<Employee> ListAllEmployeesByPosition(EmployeePositions position)
         {
             List<Employee> samePosition = new List<Employee>();
@@ -98,6 +99,7 @@ namespace Milliken.LibrarySystem.Services
             }
             return samePosition;
         }
+
         public int TotalEmployees()
         {
             _log.LogInformation($"Number of employees in library: {Employees.Count}");

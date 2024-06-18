@@ -23,6 +23,7 @@ namespace Milliken.LibrarySystem.Services
              new("Precious", "Sapphire", 241, 1996, 1.2, true),
              new("Beloved", "Toni Morrison", 289, 1987, 1.4, true)
         };
+
         // Constructor DI
         public EBookService(Library library, ILogger<EBookService> log)
         {
@@ -41,6 +42,7 @@ namespace Milliken.LibrarySystem.Services
                 AllEBooks.Remove(selectedEBook);
             }
         }
+
         // List EBooks
         public List<EBook> ListEBooks()
         {
@@ -75,6 +77,7 @@ namespace Milliken.LibrarySystem.Services
             }
             return EBooks;
         }
+
         // Adding EBooks
         public List<EBook> AddEBooks(string title, string author, int pages, int yearPublished, double fileSize, bool isAvailable)
         {
@@ -82,6 +85,7 @@ namespace Milliken.LibrarySystem.Services
             EBooks.Add(eBook);
             return EBooks;
         }
+
         public EBook CheckoutEBook(string title)
         {
             var eBook = FindEBookByTitle(title);
@@ -97,6 +101,7 @@ namespace Milliken.LibrarySystem.Services
             }
             return null;
         }
+
         public EBook ReturnEBook(string title)
         {
             var eBook = FindEBookByTitle(title);
@@ -112,10 +117,19 @@ namespace Milliken.LibrarySystem.Services
             return null;
 
         }
+
         public int TotalEBooks()
         {
-            _log.LogInformation($"Number of electronic books in library: {EBooks.Count}");
-            return EBooks.Count;
+            int count = 0;
+            foreach ( var eBook in EBooks )
+            {
+                if ( eBook.IsAvailable == true )
+                {
+                    count++;
+                }
+            }
+            _log.LogInformation($"Number of available electronic books in library: {count}");
+            return count;
         }
     }
 }

@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Milliken.LibrarySystem.Interfaces;
 using Milliken.LibrarySystem.Models;
-using Milliken.LibrarySystem.Services;
 
 namespace Milliken.LibraryAPI.Controllers
 {
@@ -53,6 +52,5 @@ namespace Milliken.LibraryAPI.Controllers
         {
             return _eBookService.TotalEBooks();
         }
-
     }
 }

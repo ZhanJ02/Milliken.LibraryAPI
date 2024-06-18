@@ -46,6 +46,5 @@ namespace Milliken.LibraryAPI.Controllers
         {
             return _employeeService.TotalEmployees();
         }
-
     }
 }

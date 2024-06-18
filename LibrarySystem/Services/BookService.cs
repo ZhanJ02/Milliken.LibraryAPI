@@ -1,8 +1,6 @@
-﻿using System.Collections;
-using Milliken.LibrarySystem.Models;
+﻿using Milliken.LibrarySystem.Models;
 using Milliken.LibrarySystem.Interfaces;
 using Microsoft.Extensions.Logging;
-using System.Net.Http.Headers;
 
 namespace Milliken.LibrarySystem.Services
 {
@@ -33,6 +31,7 @@ namespace Milliken.LibrarySystem.Services
             _log = log;
             InitializeBookData();
         }
+
         public void InitializeBookData()
         {
             for (int i = 0; i < 5; i++)
@@ -87,6 +86,7 @@ namespace Milliken.LibrarySystem.Services
             Books.Add(book);
             return Books;
         }
+
         public Book CheckoutBook(string title)
         {
             var book = FindBookByTitle(title);
@@ -102,6 +102,7 @@ namespace Milliken.LibrarySystem.Services
             }
             return null;
         }
+
         public Book ReturnBook(string title)
         {
             var book = FindBookByTitle(title);
@@ -115,15 +116,21 @@ namespace Milliken.LibrarySystem.Services
                 _log.LogInformation($"{title} is already in library");
             }
             return null;
-
         }
+
         // Total Books
         public int TotalBooks()
         {
-            _log.LogInformation($"Number of books in library: {Books.Count}");
-            return Books.Count;
+            int count = 0;
+            foreach ( var book in Books )
+            {
+                if ( book.IsAvailable == true )
+                {
+                    count++;
+                }
+            }
+            _log.LogInformation($"Number of books in library: {count}");
+            return count;
         }
-
     }
-
 }

@@ -1,7 +1,4 @@
-﻿using System.Collections.Generic;
-using System;
-
-namespace Milliken.LibrarySystem.Models
+﻿namespace Milliken.LibrarySystem.Models
 {
     public class Library
     {

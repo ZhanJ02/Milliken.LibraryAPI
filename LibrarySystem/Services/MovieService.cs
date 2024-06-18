@@ -24,6 +24,7 @@ namespace Milliken.LibrarySystem.Services
              new("Challengers", GenresOfMovies.Drama, 131, false),
              new("Spaceman",GenresOfMovies.Drama ,109, true)
         };
+
         // Constructor DI
         public MovieService(Library library, ILogger<MovieService> log)
         {
@@ -42,6 +43,7 @@ namespace Milliken.LibrarySystem.Services
                 AllMovies.Remove(selectedMovie);
             }
         }
+
         // List EBooks
         public List<Movie> ListMovies()
         {
@@ -76,6 +78,7 @@ namespace Milliken.LibrarySystem.Services
             }
             return Movies;
         }
+
         // Adding EBooks
         public List<Movie> AddMovies(string name, GenresOfMovies genre, int durationInMinutes, bool isAvailable)
         {
@@ -83,6 +86,7 @@ namespace Milliken.LibrarySystem.Services
             Movies.Add(movie);
             return Movies;
         }
+
         public List<Movie> ListAllMoviesByGenre(GenresOfMovies genre)
         {
             List<Movie> sameGenre = new List<Movie>();
@@ -97,6 +101,7 @@ namespace Milliken.LibrarySystem.Services
             }
             return sameGenre;
         }
+
         public Movie CheckoutMovie(string name)
         {
             var movie = FindMovieByName(name);
@@ -112,6 +117,7 @@ namespace Milliken.LibrarySystem.Services
             }
             return null;
         }
+
         public Movie ReturnMovie(string name)
         {
             var movie = FindMovieByName(name);
@@ -127,10 +133,19 @@ namespace Milliken.LibrarySystem.Services
             return null;
 
         }
+
         public int TotalMovies()
         {
-            _log.LogInformation($"Number of movies in library: {Movies.Count}");
-            return Movies.Count;
+            int count = 0;
+            foreach (var movie in Movies)
+            {
+                if (movie.IsAvailable == true)
+                {
+                    count++;
+                }
+            }
+            _log.LogInformation($"Number of available movies in library: {count}");
+            return count;
         }
     }
 }
