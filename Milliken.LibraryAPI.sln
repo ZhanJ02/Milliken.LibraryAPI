@@ -8,7 +8,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Milliken.LibraryAPI", "Mill
 		{AAA71890-457B-482C-896D-B48521B41ACC} = {AAA71890-457B-482C-896D-B48521B41ACC}
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LibrarySystem", "LibrarySystem\LibrarySystem.csproj", "{AAA71890-457B-482C-896D-B48521B41ACC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Milliken.LibrarySystem", "LibrarySystem\Milliken.LibrarySystem.csproj", "{AAA71890-457B-482C-896D-B48521B41ACC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
