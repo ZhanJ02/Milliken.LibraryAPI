@@ -3,9 +3,7 @@ using Milliken.LibrarySystem.Services;
 using Milliken.LibrarySystem.Models;
 
 var builder = WebApplication.CreateBuilder(args);
-
 // Add services to the container.
-
 builder.Services.AddControllers();
 // Singleton so that a single instance is created for the entire application lifecycle *
 builder.Services.AddSingleton(new Library("Milliken", "Spartanburg"));

@@ -12,7 +12,6 @@
         // Properties
         public string Name { get; set; }
         public EmployeePositions Position { get; set; }
-
         public int Age { get; set; }
         public int EmployeeID { get; set; }
         public bool IsWorking { get; set; }
