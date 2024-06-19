@@ -43,7 +43,6 @@ namespace Milliken.LibrarySystem.Services
             }
         }
 
-        // List EBooks
         public List<EBook> ListEBooks()
         {
             _log.LogInformation($"EBooks in {_library.Name}:");
@@ -55,7 +54,6 @@ namespace Milliken.LibrarySystem.Services
             return EBooks;
         }
 
-        // Find EBook
         public EBook FindEBookByTitle(string title)
         {
             foreach (var eBook in EBooks)
@@ -78,7 +76,6 @@ namespace Milliken.LibrarySystem.Services
             return EBooks;
         }
 
-        // Adding EBooks
         public List<EBook> AddEBooks(string title, string author, int pages, int yearPublished, double fileSize, bool isAvailable)
         {
             var eBook = new EBook(title, author, pages, yearPublished, fileSize, isAvailable);

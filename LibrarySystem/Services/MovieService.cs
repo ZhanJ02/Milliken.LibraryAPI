@@ -44,7 +44,6 @@ namespace Milliken.LibrarySystem.Services
             }
         }
 
-        // List EBooks
         public List<Movie> ListMovies()
         {
             _log.LogInformation($"Movies in {_library.Name}:");
@@ -56,7 +55,6 @@ namespace Milliken.LibrarySystem.Services
             return Movies;
         }
 
-        // Find EBook
         public Movie FindMovieByName(string name)
         {
             foreach (var movie in Movies)
@@ -79,7 +77,6 @@ namespace Milliken.LibrarySystem.Services
             return Movies;
         }
 
-        // Adding EBooks
         public List<Movie> AddMovies(string name, GenresOfMovies genre, int durationInMinutes, bool isAvailable)
         {
             var movie = new Movie(name, genre, durationInMinutes, isAvailable);
@@ -131,7 +128,6 @@ namespace Milliken.LibrarySystem.Services
                 _log.LogInformation($"{name} is already in library");
             }
             return null;
-
         }
 
         public int TotalMovies()

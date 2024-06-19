@@ -15,14 +15,16 @@
 
         public int Age { get; set; }
         public int EmployeeID { get; set; }
+        public bool IsWorking { get; set; }
 
         // Parameterized Constructor
-        public Employee(string name, EmployeePositions position, int age, int employeeID)
+        public Employee(string name, EmployeePositions position, int age, int employeeID, bool isWorking)
         {
             Name = name;
             Position = position;
             Age = age;
             EmployeeID = employeeID;
+            IsWorking = isWorking;
         }
     }
 }
