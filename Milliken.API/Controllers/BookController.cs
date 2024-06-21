@@ -11,7 +11,7 @@ namespace Milliken.LibraryAPI.Controllers
         private readonly IBookService _bookService;
 
         public BookController(IBookService BookService)
-        {
+        { 
             _bookService = BookService;
         }
 
@@ -19,7 +19,6 @@ namespace Milliken.LibraryAPI.Controllers
         public List<Book> GetBooks()
         {
             return _bookService.ListBooks();
-
         }
 
         [HttpDelete("Deleting Books in Library")]
