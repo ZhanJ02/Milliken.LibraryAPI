@@ -4,7 +4,6 @@ namespace Milliken.LibrarySystem.Interfaces
 {
     public interface IMovieService
     {
-        void InitializeMovieData();
         List<Movie> ListMovies();
         Movie FindMovieByName(string name);
         List<Movie> RemoveMovieByName(string name);

@@ -1,16 +1,23 @@
 using Milliken.LibrarySystem.Interfaces;
 using Milliken.LibrarySystem.Services;
 using Milliken.LibrarySystem.Models;
+using System.Data.SqlClient;
+using Dapper;
+using System.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllers();
+
 // Singleton so that a single instance is created for the entire application lifecycle *
 builder.Services.AddSingleton(new Library("Milliken", "Spartanburg"));
 builder.Services.AddSingleton<IBookService, BookService>();
 builder.Services.AddSingleton<IEBookService, EBookService>();
 builder.Services.AddSingleton<IEmployeeService, EmployeeService>();
 builder.Services.AddSingleton<IMovieService, MovieService>();
+
+// SQL Connection
+builder.Services.AddScoped<IDbConnection>(sp => new SqlConnection(builder.Configuration.GetConnectionString("libraryDb")));
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();

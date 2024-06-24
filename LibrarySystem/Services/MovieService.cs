@@ -1,6 +1,8 @@
 ﻿using Microsoft.Extensions.Logging;
 using Milliken.LibrarySystem.Interfaces;
 using Milliken.LibrarySystem.Models;
+using Dapper;
+using System.Data;
 
 namespace Milliken.LibrarySystem.Services
 {
@@ -8,63 +10,33 @@ namespace Milliken.LibrarySystem.Services
     {
         private readonly Library _library;
         private readonly ILogger<MovieService> _log;
-        private readonly Random _random = new Random();
+        private readonly IDbConnection _dbConnection;
         public List<Movie> Movies { get; set; } = new List<Movie>();
-        private readonly List<Movie> AllMovies = new List<Movie>()
-        {
-             new("Monkey Man", GenresOfMovies.Action, 113, true),
-             new("Megamind", GenresOfMovies.Action, 85, true),
-             new("Dune: Part One", GenresOfMovies.Adventure, 155, true),
-             new("Lord of the Rings: The Fellowship of the Ring", GenresOfMovies.Adventure, 208, false),
-             new("Star Wars: Episode 3 - Revenge of the Sith", GenresOfMovies.Action, 140, false),
-             new("Anyone But You", GenresOfMovies.Romance, 103, false),
-             new("The Notebook", GenresOfMovies.Romance, 121, true),
-             new("Fall Guy", GenresOfMovies.Comedy, 145, true),
-             new("Office Space", GenresOfMovies.Comedy, 99, true),
-             new("Challengers", GenresOfMovies.Drama, 131, false),
-             new("Spaceman",GenresOfMovies.Drama ,109, true)
-        };
-
         // Constructor DI
-        public MovieService(Library library, ILogger<MovieService> log)
+        public MovieService(Library library, ILogger<MovieService> log, IDbConnection dbConnection)
         {
+            _dbConnection = dbConnection;
             _library = library;
             _log = log;
-            InitializeMovieData();
-        }
-
-        public void InitializeMovieData()
-        {
-            for (int i = 0; i < 7; i++)
-            {
-                int randomIndex = _random.Next(0, AllMovies.Count);
-                Movie selectedMovie = AllMovies[randomIndex];
-                Movies.Add(selectedMovie);
-                AllMovies.Remove(selectedMovie);
-            }
         }
 
         public List<Movie> ListMovies()
         {
+            string sql = "select * from Movie";
+            var movies = _dbConnection.Query<Movie>(sql).ToList();
             _log.LogInformation($"Movies in {_library.Name}:");
             foreach (var movie in Movies)
             {
                 _log.LogInformation($"- {movie.Name}: Genre: {movie.Genre}, Duration in Minutes: {movie.DurationInMinutes}, Is Available to Checkout: {movie.IsAvailable}");
             }
             _log.LogInformation("\n -------------------------------------- \n");
-            return Movies;
+            return movies;
         }
 
         public Movie FindMovieByName(string name)
         {
-            foreach (var movie in Movies)
-            {
-                if (movie.Name.Equals(name, StringComparison.OrdinalIgnoreCase))
-                {
-                    return movie;
-                }
-            }
-            return null;
+            string sql = "select * from Movie where Name = @Name";
+            return _dbConnection.QuerySingleOrDefault<Movie>(sql, new { Name = name });
         }
 
         public List<Movie> RemoveMovieByName(string name)
