@@ -16,9 +16,10 @@ builder.Services.AddSingleton<IEBookService, EBookService>();
 builder.Services.AddSingleton<IEmployeeService, EmployeeService>();
 builder.Services.AddSingleton<IMovieService, MovieService>();
 
-// SQL Connection
+//Configure SQL Server Settings
 builder.Services.Configure<SqlSettings>(
-    options => builder.Configuration.GetSection("LibrarySystem:SqlSettings").Bind(options));
+    options => builder.Configuration.GetSection("MES:SqlSettings").Bind(options));
+
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddLogging(loggingBuilder =>
