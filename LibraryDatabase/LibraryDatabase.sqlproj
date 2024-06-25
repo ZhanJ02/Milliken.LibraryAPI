@@ -58,19 +58,5 @@
   <Import Condition="'$(SQLDBExtensionsRefPath)' == ''" Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
   <ItemGroup>
     <Folder Include="Properties" />
-    <Folder Include="dbo\" />
-    <Folder Include="dbo\Tables\" />
-    <Folder Include="Security\" />
-  </ItemGroup>
-  <ItemGroup>
-    <Build Include="dbo\Tables\Movie.sql" />
-    <Build Include="dbo\Tables\GenresOfMovieLookup.sql" />
-    <Build Include="dbo\Tables\Employee.sql" />
-    <Build Include="dbo\Tables\EmployeePositionLookup.sql" />
-    <Build Include="dbo\Tables\Book.sql" />
-    <Build Include="dbo\Tables\Library.sql" />
-    <Build Include="Security\Intern2024.sql" />
-    <Build Include="Security\RoleMemberships.sql" />
-    <Build Include="Security\https___courserastevesa.blob.core.windows.net_sqldbauditlogs.sql" />
   </ItemGroup>
 </Project>

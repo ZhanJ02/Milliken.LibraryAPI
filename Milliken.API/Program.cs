@@ -17,8 +17,8 @@ builder.Services.AddSingleton<IEmployeeService, EmployeeService>();
 builder.Services.AddSingleton<IMovieService, MovieService>();
 
 // SQL Connection
-builder.Services.AddScoped<IDbConnection>(sp => new SqlConnection(builder.Configuration.GetConnectionString("libraryDb")));
-
+builder.Services.Configure<SqlSettings>(
+    options => builder.Configuration.GetSection("LibrarySystem:SqlSettings").Bind(options));
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddLogging(loggingBuilder =>

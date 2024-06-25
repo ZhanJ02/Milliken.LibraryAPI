@@ -1,8 +1,11 @@
 ﻿using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
 using Milliken.LibrarySystem.Interfaces;
 using Milliken.LibrarySystem.Models;
 using Dapper;
+using System.Data.SqlClient;
 using System.Data;
+using System.Linq;
 
 namespace Milliken.LibrarySystem.Services
 {
@@ -10,33 +13,36 @@ namespace Milliken.LibrarySystem.Services
     {
         private readonly Library _library;
         private readonly ILogger<MovieService> _log;
-        private readonly IDbConnection _dbConnection;
+        private readonly IOptions<SqlSettings> _sqlOptions;
+        private readonly string? _connectionString;
         public List<Movie> Movies { get; set; } = new List<Movie>();
         // Constructor DI
-        public MovieService(Library library, ILogger<MovieService> log, IDbConnection dbConnection)
+        public MovieService(IOptions<SqlSettings> sqlOptions, ILogger<MovieService> log, Library library)
         {
-            _dbConnection = dbConnection;
+            _sqlOptions = sqlOptions;
+            _connectionString = _sqlOptions.Value?.DbSettings?
+                .SingleOrDefault(name => name.Name == "libraryDb")?.ConnectionString;
             _library = library;
             _log = log;
         }
 
         public List<Movie> ListMovies()
         {
-            string sql = "select * from Movie";
-            var movies = _dbConnection.Query<Movie>(sql).ToList();
+            using var connection = new SqlConnection(_connectionString);
+            List<Movie> results = connection.Query<Movie>(_connectionString).ToList();
             _log.LogInformation($"Movies in {_library.Name}:");
-            foreach (var movie in Movies)
+            foreach (var movie in results)
             {
                 _log.LogInformation($"- {movie.Name}: Genre: {movie.Genre}, Duration in Minutes: {movie.DurationInMinutes}, Is Available to Checkout: {movie.IsAvailable}");
             }
             _log.LogInformation("\n -------------------------------------- \n");
-            return movies;
+            return results;
         }
 
         public Movie FindMovieByName(string name)
         {
             string sql = "select * from Movie where Name = @Name";
-            return _dbConnection.QuerySingleOrDefault<Movie>(sql, new { Name = name });
+            return null;
         }
 
         public List<Movie> RemoveMovieByName(string name)
