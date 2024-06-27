@@ -4,7 +4,7 @@ namespace Milliken.LibrarySystem.Interfaces
 {
     public interface IMovieService
     {
-        String ListMovies();
+        List<Movie> ListMovies();
         Movie FindMovieByName(string name);
         List<Movie> RemoveMovieByName(string name);
         List<Movie> AddMovies(string name, GenresOfMovies genre, int durationInMinutes, bool isAvailable);

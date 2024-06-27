@@ -16,20 +16,20 @@ namespace Milliken.LibraryAPI.Controllers
         }
 
         [HttpGet("Movies in Library")]
-        public string GetEmployees()
+        public List<Movie> GetEmployees()
         {
             return _movieService.ListMovies();
         }
 
         [HttpDelete("Deleting Movies by Name")]
-        public string DeleteEmployees(string name)
+        public List<Movie> DeleteEmployees(string name)
         {
             _movieService.RemoveMovieByName(name);
             return _movieService.ListMovies();
         }
 
         [HttpPost("Add Movies to Library")]
-        public string AddEmployees(string name, GenresOfMovies genre, int durationInMinutes, bool isAvailable)
+        public List<Movie> AddEmployees(string name, GenresOfMovies genre, int durationInMinutes, bool isAvailable)
         {
             _movieService.AddMovies(name, genre, durationInMinutes, isAvailable);
             return _movieService.ListMovies();

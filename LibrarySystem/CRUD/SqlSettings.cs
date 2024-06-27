@@ -1,4 +1,4 @@
-﻿namespace Milliken.LibrarySystem.Services
+﻿namespace Milliken.LibrarySystem.CRUD
 {
     public class SqlSettings
     {

@@ -1,43 +1,29 @@
 ﻿using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
 using Milliken.LibrarySystem.Interfaces;
 using Milliken.LibrarySystem.Models;
-using Dapper;
-using System.Data.SqlClient;
-using System.Data;
-using System.Linq;
-using static System.Reflection.Metadata.BlobBuilder;
+using Milliken.LibrarySystem.CRUD;
 
 namespace Milliken.LibrarySystem.Services
 {
     public class MovieService : IMovieService
     {
         private readonly Library _library;
+        private readonly MovieCRUD _movieCRUD;
         private readonly ILogger<MovieService> _log;
-        private readonly IOptions<SqlSettings> _sqlOptions;
-        private readonly string? _connectionString;
         public List<Movie> Movies { get; set; } = new List<Movie>();
         // Constructor DI
-        public MovieService(IOptions<SqlSettings> sqlOptions, ILogger<MovieService> log, Library library)
+        public MovieService(ILogger<MovieService> log, Library library, MovieCRUD movieCRUD)
         {
-            _sqlOptions = sqlOptions;
-            _connectionString = _sqlOptions.Value?.DbSettings?
-                .SingleOrDefault(name => name.Name == "MesDb")?.ConnectionString;
+            _movieCRUD = movieCRUD;
             _library = library;
             _log = log;
         }
 
-        public string ListMovies()
+        public List<Movie> ListMovies()
         {
-            using var connection = new SqlConnection(_connectionString);
-            string sqlQuery = "select name from Movie where name = 'Challengers';";
-
-            // Fetch Movies from Database
-            var results = connection.QuerySingle<string>(sqlQuery);
-            _log.LogInformation(results);
-            return results;
+            Movies = (_movieCRUD.CreateMovie());
+            return Movies;
         }
-
 
         public Movie FindMovieByName(string name)
         {

@@ -4,7 +4,6 @@ namespace Milliken.LibrarySystem.Interfaces
 {
     public interface IBookService
     {
-        void InitializeBookData();
         List<Book> ListBooks();
         Book FindBookByTitle(string title);
         List<Book> RemoveBooksByTitle(string title);

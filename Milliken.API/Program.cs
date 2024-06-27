@@ -1,9 +1,11 @@
 using Milliken.LibrarySystem.Interfaces;
 using Milliken.LibrarySystem.Services;
 using Milliken.LibrarySystem.Models;
+using Milliken.LibrarySystem.CRUD;
 using System.Data.SqlClient;
 using Dapper;
 using System.Data;
+using Milliken.LibrarySystem.CRUD;
 
 var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
@@ -15,6 +17,9 @@ builder.Services.AddSingleton<IBookService, BookService>();
 builder.Services.AddSingleton<IEBookService, EBookService>();
 builder.Services.AddSingleton<IEmployeeService, EmployeeService>();
 builder.Services.AddSingleton<IMovieService, MovieService>();
+builder.Services.AddSingleton<MovieCRUD, MovieCRUD>();
+builder.Services.AddSingleton<BookCRUD, BookCRUD>();
+builder.Services.AddSingleton<EBookCRUD, EBookCRUD>();
 
 //Configure SQL Server Settings
 builder.Services.Configure<SqlSettings>(
