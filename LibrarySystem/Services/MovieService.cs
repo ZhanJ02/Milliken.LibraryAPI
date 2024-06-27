@@ -6,6 +6,7 @@ using Dapper;
 using System.Data.SqlClient;
 using System.Data;
 using System.Linq;
+using static System.Reflection.Metadata.BlobBuilder;
 
 namespace Milliken.LibrarySystem.Services
 {
@@ -21,7 +22,7 @@ namespace Milliken.LibrarySystem.Services
         {
             _sqlOptions = sqlOptions;
             _connectionString = _sqlOptions.Value?.DbSettings?
-                .SingleOrDefault(name => name.Name == "libraryDb")?.ConnectionString;
+                .SingleOrDefault(name => name.Name == "MesDb")?.ConnectionString;
             _library = library;
             _log = log;
         }
@@ -29,12 +30,11 @@ namespace Milliken.LibrarySystem.Services
         public List<Movie> ListMovies()
         {
             using var connection = new SqlConnection(_connectionString);
-            string sqlQuery = "SELECT Name, Genre, DurationInMinutes, IsAvailable FROM Movie";
+            string sqlQuery = "SELECT * FROM sys.tables";
 
-            // Fetch the movies from the database
+            // Fetch Movies from Database
             List<Movie> results = connection.Query<Movie>(sqlQuery).ToList();
 
-            // Log the movies' information
             _log.LogInformation($"Movies in {_library.Name}:");
             foreach (var movie in results)
             {
@@ -48,7 +48,13 @@ namespace Milliken.LibrarySystem.Services
 
         public Movie FindMovieByName(string name)
         {
-            string sql = "select * from Movie where Name = @Name";
+            foreach (var movie in Movies)
+            {
+                if (movie.Name.Equals(name, StringComparison.OrdinalIgnoreCase))
+                {
+                    return movie;
+                }
+            }
             return null;
         }
 

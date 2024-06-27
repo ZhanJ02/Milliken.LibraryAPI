@@ -18,7 +18,7 @@ builder.Services.AddSingleton<IMovieService, MovieService>();
 
 //Configure SQL Server Settings
 builder.Services.Configure<SqlSettings>(
-    options => builder.Configuration.GetSection("MES:SqlSettings").Bind(options));
+    options => builder.Configuration.GetSection("SqlSettings").Bind(options));
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
