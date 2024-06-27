@@ -27,21 +27,14 @@ namespace Milliken.LibrarySystem.Services
             _log = log;
         }
 
-        public List<Movie> ListMovies()
+        public string ListMovies()
         {
             using var connection = new SqlConnection(_connectionString);
-            string sqlQuery = "SELECT * FROM sys.tables";
+            string sqlQuery = "select name from Movie where name = 'Challengers';";
 
             // Fetch Movies from Database
-            List<Movie> results = connection.Query<Movie>(sqlQuery).ToList();
-
-            _log.LogInformation($"Movies in {_library.Name}:");
-            foreach (var movie in results)
-            {
-                _log.LogInformation($"- {movie.Name}: Genre: {movie.Genre}, Duration in Minutes: {movie.DurationInMinutes}, Is Available to Checkout: {movie.IsAvailable}");
-            }
-            _log.LogInformation("\n -------------------------------------- \n");
-
+            var results = connection.QuerySingle<string>(sqlQuery);
+            _log.LogInformation(results);
             return results;
         }
 
