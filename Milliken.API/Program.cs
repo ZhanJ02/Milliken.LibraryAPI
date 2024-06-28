@@ -1,11 +1,10 @@
-using Milliken.LibrarySystem.Interfaces;
-using Milliken.LibrarySystem.Services;
-using Milliken.LibrarySystem.Models;
-using Milliken.LibrarySystem.CRUD;
+using Milliken.LibrarySystem.Data.Interfaces;
+using Milliken.LibrarySystem.Data.Services;
+using Milliken.LibrarySystem.Core.Models;
+using Milliken.LibrarySystem.Data.CRUD;
 using System.Data.SqlClient;
 using Dapper;
 using System.Data;
-using Milliken.LibrarySystem.CRUD;
 
 var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.

@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Milliken.LibrarySystem.Interfaces;
-using Milliken.LibrarySystem.Models;
+using Milliken.LibrarySystem.Core.Models;
+using Milliken.LibrarySystem.Data.Interfaces;
 
-namespace Milliken.LibraryAPI.Controllers
+namespace Milliken.LibrarySystem.API.Controllers
 {
     [ApiController]
     [Route("[controller]")]
@@ -11,7 +11,7 @@ namespace Milliken.LibraryAPI.Controllers
         private readonly IBookService _bookService;
 
         public BookController(IBookService BookService)
-        { 
+        {
             _bookService = BookService;
         }
 

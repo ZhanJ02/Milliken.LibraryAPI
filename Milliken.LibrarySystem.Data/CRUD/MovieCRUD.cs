@@ -1,9 +1,9 @@
 ﻿using Microsoft.Extensions.Options;
-using Milliken.LibrarySystem.Models;
+using Milliken.LibrarySystem.Core.Models;
 using System.Data.SqlClient;
 using Dapper;
 
-namespace Milliken.LibrarySystem.CRUD
+namespace Milliken.LibrarySystem.Data.CRUD
 {
     public class MovieCRUD
     {
@@ -25,7 +25,7 @@ namespace Milliken.LibrarySystem.CRUD
             var tableData = connection.Query(sqlQuery);
             foreach (var row in tableData)
             {
-                var movie = new Movie(row.Name, GenresOfMovies.Action, row.DurationInMinutes, false);               
+                var movie = new Movie(row.Name, GenresOfMovies.Action, row.DurationInMinutes, false);
                 switch (row.Genre)
                 {
                     case 0:

@@ -1,6 +1,6 @@
-﻿using Milliken.LibrarySystem.Models;
+﻿using Milliken.LibrarySystem.Core.Models;
 
-namespace Milliken.LibrarySystem.Interfaces
+namespace Milliken.LibrarySystem.Data.Interfaces
 {
     public interface IMovieService
     {

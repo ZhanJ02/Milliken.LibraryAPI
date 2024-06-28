@@ -1,9 +1,9 @@
 ﻿using Microsoft.Extensions.Logging;
-using Milliken.LibrarySystem.Models;
-using Milliken.LibrarySystem.Interfaces;
-using Milliken.LibrarySystem.CRUD;
+using Milliken.LibrarySystem.Core.Models;
+using Milliken.LibrarySystem.Data.Interfaces;
+using Milliken.LibrarySystem.Data.CRUD;
 
-namespace Milliken.LibrarySystem.Services
+namespace Milliken.LibrarySystem.Data.Services
 {
     public class EmployeeService : IEmployeeService
     {
@@ -83,7 +83,7 @@ namespace Milliken.LibrarySystem.Services
                 employee.IsWorking = true;
                 _log.LogInformation($"{employee.Name} is now working");
                 return employee;
-            } 
+            }
             else
             {
                 _log.LogInformation($"{employee.Name} is already working");

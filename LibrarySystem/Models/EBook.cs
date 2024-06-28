@@ -1,4 +1,4 @@
-﻿namespace Milliken.LibrarySystem.Models
+﻿namespace Milliken.LibrarySystem.Core.Models
 {
     public class EBook : Book
     {

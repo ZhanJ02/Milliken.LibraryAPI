@@ -1,16 +1,16 @@
-﻿using Milliken.LibrarySystem.Models;
-using Milliken.LibrarySystem.Interfaces;
+﻿using Milliken.LibrarySystem.Core.Models;
 using Microsoft.Extensions.Logging;
-using Milliken.LibrarySystem.CRUD;
+using Milliken.LibrarySystem.Data.Interfaces;
+using Milliken.LibrarySystem.Data.CRUD;
 
-namespace Milliken.LibrarySystem.Services
+namespace Milliken.LibrarySystem.Data.Services
 {
     public class EBookService : IEBookService
     {
         private readonly Library _library;
         private readonly ILogger<EBookService> _log;
         private readonly EBookCRUD _eBookCRUD;
-        public List<EBook> EBooks { get; set; } = new List<EBook>(); 
+        public List<EBook> EBooks { get; set; } = new List<EBook>();
         // Constructor DI
         public EBookService(Library library, ILogger<EBookService> log, EBookCRUD eBookCRUD)
         {
@@ -21,7 +21,7 @@ namespace Milliken.LibrarySystem.Services
 
         public List<EBook> ListEBooks()
         {
-            EBooks = (_eBookCRUD.InitializeEBook());
+            EBooks = _eBookCRUD.InitializeEBook();
             _log.LogInformation($"EBooks in {_library.Name}:");
             foreach (var eBook in EBooks)
             {
@@ -95,9 +95,9 @@ namespace Milliken.LibrarySystem.Services
         public int TotalEBooks()
         {
             int count = 0;
-            foreach ( var eBook in EBooks )
+            foreach (var eBook in EBooks)
             {
-                if ( eBook.IsAvailable == true )
+                if (eBook.IsAvailable == true)
                 {
                     count++;
                 }

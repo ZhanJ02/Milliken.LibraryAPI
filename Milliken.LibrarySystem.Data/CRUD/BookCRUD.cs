@@ -1,10 +1,10 @@
 ﻿using Microsoft.Extensions.Options;
-using Milliken.LibrarySystem.Models;
+using Milliken.LibrarySystem.Core.Models;
 using System.Data.SqlClient;
 using Dapper;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 
-namespace Milliken.LibrarySystem.CRUD
+namespace Milliken.LibrarySystem.Data.CRUD
 {
     public class BookCRUD
     {
@@ -39,7 +39,7 @@ namespace Milliken.LibrarySystem.CRUD
                 if (Convert.ToInt16(row.IsElectronic) == 1)
                 {
                     Books.Remove(book);
-                } 
+                }
             }
             return Books;
         }

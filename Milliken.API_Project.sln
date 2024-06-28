@@ -3,14 +3,18 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.9.34902.65
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Milliken.LibraryAPI", "Milliken.API\Milliken.LibraryAPI.csproj", "{A576ACB9-7008-44F3-9232-612D8F3D8348}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Milliken.LibrarySystem.API", "Milliken.API\Milliken.LibrarySystem.API.csproj", "{A576ACB9-7008-44F3-9232-612D8F3D8348}"
 	ProjectSection(ProjectDependencies) = postProject
+		{6733D866-680F-4C3F-86B4-2D1EF3593AB6} = {6733D866-680F-4C3F-86B4-2D1EF3593AB6}
+		{9A09E86E-EB09-4366-9E63-61FC9EFB6D84} = {9A09E86E-EB09-4366-9E63-61FC9EFB6D84}
 		{AAA71890-457B-482C-896D-B48521B41ACC} = {AAA71890-457B-482C-896D-B48521B41ACC}
 	EndProjectSection
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Milliken.LibrarySystem", "LibrarySystem\Milliken.LibrarySystem.csproj", "{AAA71890-457B-482C-896D-B48521B41ACC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Milliken.LibrarySystem.Core", "LibrarySystem\Milliken.LibrarySystem.Core.csproj", "{AAA71890-457B-482C-896D-B48521B41ACC}"
 EndProject
-Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "LibraryDatabase", "LibraryDatabase\LibraryDatabase.sqlproj", "{6733D866-680F-4C3F-86B4-2D1EF3593AB6}"
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "Milliken.LibrarySystem.SQL_Database", "LibraryDatabase\Milliken.LibrarySystem.SQL_Database.sqlproj", "{6733D866-680F-4C3F-86B4-2D1EF3593AB6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Milliken.LibrarySystem.Data", "Milliken.LibrarySystem.Data\Milliken.LibrarySystem.Data.csproj", "{9A09E86E-EB09-4366-9E63-61FC9EFB6D84}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -32,6 +36,10 @@ Global
 		{6733D866-680F-4C3F-86B4-2D1EF3593AB6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6733D866-680F-4C3F-86B4-2D1EF3593AB6}.Release|Any CPU.Build.0 = Release|Any CPU
 		{6733D866-680F-4C3F-86B4-2D1EF3593AB6}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{9A09E86E-EB09-4366-9E63-61FC9EFB6D84}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9A09E86E-EB09-4366-9E63-61FC9EFB6D84}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9A09E86E-EB09-4366-9E63-61FC9EFB6D84}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9A09E86E-EB09-4366-9E63-61FC9EFB6D84}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,9 +1,9 @@
-﻿using Milliken.LibrarySystem.Models;
-using Milliken.LibrarySystem.Interfaces;
-using Milliken.LibrarySystem.CRUD;
+﻿using Milliken.LibrarySystem.Core.Models;
 using Microsoft.Extensions.Logging;
+using Milliken.LibrarySystem.Data.Interfaces;
+using Milliken.LibrarySystem.Data.CRUD;
 
-namespace Milliken.LibrarySystem.Services
+namespace Milliken.LibrarySystem.Data.Services
 {
     public class BookService : IBookService
     {
@@ -20,7 +20,7 @@ namespace Milliken.LibrarySystem.Services
         }
         public List<Book> ListBooks()
         {
-            Books = (_bookCRUD.InitializeBook());
+            Books = _bookCRUD.InitializeBook();
             _log.LogInformation($"Books in {_library.Name}:");
             foreach (var book in Books)
             {
@@ -29,7 +29,7 @@ namespace Milliken.LibrarySystem.Services
             _log.LogInformation("\n |||||||||||||||||||||||||||||||||||||| \n");
             return Books;
         }
-     
+
         public Book FindBookByTitle(string title)
         {
             foreach (var book in Books)
@@ -93,9 +93,9 @@ namespace Milliken.LibrarySystem.Services
         public int TotalBooks()
         {
             int count = 0;
-            foreach ( var book in Books )
+            foreach (var book in Books)
             {
-                if ( book.IsAvailable == true )
+                if (book.IsAvailable == true)
                 {
                     count++;
                 }

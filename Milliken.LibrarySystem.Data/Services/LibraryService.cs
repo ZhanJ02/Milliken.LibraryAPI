@@ -1,8 +1,8 @@
-﻿using Milliken.LibrarySystem.Models;
-using Milliken.LibrarySystem.Interfaces;
+﻿using Milliken.LibrarySystem.Core.Models;
 using Microsoft.Extensions.Logging;
+using Milliken.LibrarySystem.Data.Interfaces;
 
-namespace Milliken.LibrarySystem.Services
+namespace Milliken.LibrarySystem.Data.Services
 {
     public class LibraryService : ILibraryService
     {
@@ -19,7 +19,7 @@ namespace Milliken.LibrarySystem.Services
 
         public List<Library> CreateLibraries()
         {
-            
+
             return Libraries;
         }
 

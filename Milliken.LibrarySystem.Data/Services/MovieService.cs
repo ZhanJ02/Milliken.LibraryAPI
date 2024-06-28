@@ -1,9 +1,9 @@
 ﻿using Microsoft.Extensions.Logging;
-using Milliken.LibrarySystem.Interfaces;
-using Milliken.LibrarySystem.Models;
-using Milliken.LibrarySystem.CRUD;
+using Milliken.LibrarySystem.Core.Models;
+using Milliken.LibrarySystem.Data.Interfaces;
+using Milliken.LibrarySystem.Data.CRUD;
 
-namespace Milliken.LibrarySystem.Services
+namespace Milliken.LibrarySystem.Data.Services
 {
     public class MovieService : IMovieService
     {
@@ -21,7 +21,7 @@ namespace Milliken.LibrarySystem.Services
 
         public List<Movie> ListMovies()
         {
-            Movies = (_movieCRUD.InitializeMovie());
+            Movies = _movieCRUD.InitializeMovie();
             return Movies;
         }
 

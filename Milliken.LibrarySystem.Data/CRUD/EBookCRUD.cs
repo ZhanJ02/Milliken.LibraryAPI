@@ -1,9 +1,9 @@
 ﻿using Microsoft.Extensions.Options;
-using Milliken.LibrarySystem.Models;
+using Milliken.LibrarySystem.Core.Models;
 using System.Data.SqlClient;
 using Dapper;
 
-namespace Milliken.LibrarySystem.CRUD
+namespace Milliken.LibrarySystem.Data.CRUD
 {
     public class EBookCRUD
     {
