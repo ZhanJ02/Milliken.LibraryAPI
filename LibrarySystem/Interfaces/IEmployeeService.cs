@@ -4,7 +4,6 @@ namespace Milliken.LibrarySystem.Interfaces
 {
     public interface IEmployeeService
     {
-        void InitializeEmployeeData();
         List<Employee> ListEmployees();
         Employee FindEmployeeByID(int id);
         List<Employee> RemoveEmployeeByID(int id);

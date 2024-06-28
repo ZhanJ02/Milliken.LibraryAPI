@@ -20,6 +20,7 @@ builder.Services.AddSingleton<IMovieService, MovieService>();
 builder.Services.AddSingleton<MovieCRUD, MovieCRUD>();
 builder.Services.AddSingleton<BookCRUD, BookCRUD>();
 builder.Services.AddSingleton<EBookCRUD, EBookCRUD>();
+builder.Services.AddSingleton<EmployeeCRUD, EmployeeCRUD>();
 
 //Configure SQL Server Settings
 builder.Services.Configure<SqlSettings>(

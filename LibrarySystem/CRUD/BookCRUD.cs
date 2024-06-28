@@ -19,7 +19,7 @@ namespace Milliken.LibrarySystem.CRUD
                 .SingleOrDefault(name => name.Name == "libraryDb")?.ConnectionString;
         }
 
-        public List<Book> CreateBook()
+        public List<Book> InitializeBook()
         {
             using var connection = new SqlConnection(_connectionString);
             string sqlQuery = "select Title, Author, Pages, YearPublished, IsAvailable, IsElectronic from Book;";
@@ -31,7 +31,7 @@ namespace Milliken.LibrarySystem.CRUD
                 {
                     book.IsAvailable = false;
                 }
-                else if (Convert.ToInt16(row.IsAvailable) == 1)
+                else
                 {
                     book.IsAvailable = true;
                 }

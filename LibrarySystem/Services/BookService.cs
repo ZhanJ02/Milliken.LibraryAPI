@@ -20,7 +20,7 @@ namespace Milliken.LibrarySystem.Services
         }
         public List<Book> ListBooks()
         {
-            Books = (_bookCRUD.CreateBook());
+            Books = (_bookCRUD.InitializeBook());
             _log.LogInformation($"Books in {_library.Name}:");
             foreach (var book in Books)
             {

@@ -1,6 +1,7 @@
 ﻿using Microsoft.Extensions.Logging;
 using Milliken.LibrarySystem.Models;
 using Milliken.LibrarySystem.Interfaces;
+using Milliken.LibrarySystem.CRUD;
 
 namespace Milliken.LibrarySystem.Services
 {
@@ -8,42 +9,19 @@ namespace Milliken.LibrarySystem.Services
     {
         private readonly Library _library;
         private readonly ILogger<EmployeeService> _log;
-        private readonly Random _random = new Random();
+        private readonly EmployeeCRUD _employeeCRUD;
         public List<Employee> Employees { get; set; } = new List<Employee>();
-        private readonly List<Employee> AllEmployees = new List<Employee>()
-        {
-             new("Ethan", EmployeePositions.Manager, 29, 1, true),
-             new("Sophia", EmployeePositions.Manager, 28, 2, false),
-             new("John", EmployeePositions.Librarian, 31, 3, false),
-             new("Hailey", EmployeePositions.Librarian, 28, 4, false),
-             new("Justin", EmployeePositions.Assistant, 29, 5, true),
-             new("Jane", EmployeePositions.Assistant, 30, 6, true),
-             new("Harry", EmployeePositions.Intern, 21, 7, true),
-             new("Elizabeth", EmployeePositions.Intern, 21, 8, true),
-             new("Sam", EmployeePositions.Intern, 22, 9, false),
-             new("Clarissa", EmployeePositions.Intern, 2, 11, true),
-             new("Emily", EmployeePositions.Intern, 23, 12, true)
-        };
         // Constructor DI
-        public EmployeeService(Library library, ILogger<EmployeeService> log)
+        public EmployeeService(Library library, ILogger<EmployeeService> log, EmployeeCRUD employeeCRUD)
         {
             _library = library;
             _log = log;
-            InitializeEmployeeData();
+            _employeeCRUD = employeeCRUD;
         }
 
-        public void InitializeEmployeeData()
-        {
-            for (int i = 0; i < 9; i++)
-            {
-                int randomIndex = _random.Next(0, AllEmployees.Count);
-                Employee selectedEmployee = AllEmployees[randomIndex];
-                Employees.Add(selectedEmployee);
-                AllEmployees.Remove(selectedEmployee);
-            }
-        }
         public List<Employee> ListEmployees()
         {
+            Employees = _employeeCRUD.InitializeEmployee();
             _log.LogInformation($"Employees in {_library.Name}:");
             foreach (var employee in Employees)
             {

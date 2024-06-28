@@ -21,7 +21,7 @@ namespace Milliken.LibrarySystem.Services
 
         public List<Movie> ListMovies()
         {
-            Movies = (_movieCRUD.CreateMovie());
+            Movies = (_movieCRUD.InitializeMovie());
             return Movies;
         }
 

@@ -21,7 +21,7 @@ namespace Milliken.LibrarySystem.Services
 
         public List<EBook> ListEBooks()
         {
-            EBooks = (_eBookCRUD.CreateEBook());
+            EBooks = (_eBookCRUD.InitializeEBook());
             _log.LogInformation($"EBooks in {_library.Name}:");
             foreach (var eBook in EBooks)
             {

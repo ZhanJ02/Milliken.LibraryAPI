@@ -18,7 +18,7 @@ namespace Milliken.LibrarySystem.CRUD
                 .SingleOrDefault(name => name.Name == "libraryDb")?.ConnectionString;
         }
 
-        public List<Movie> CreateMovie()
+        public List<Movie> InitializeMovie()
         {
             using var connection = new SqlConnection(_connectionString);
             string sqlQuery = "select Name, Genre, DurationInMinutes, IsAvailable from Movie;";
@@ -26,31 +26,32 @@ namespace Milliken.LibrarySystem.CRUD
             foreach (var row in tableData)
             {
                 var movie = new Movie(row.Name, GenresOfMovies.Action, row.DurationInMinutes, false);               
-                if (row.Genre == 1)
+                switch (row.Genre)
                 {
-                    movie.Genre = GenresOfMovies.Horror;
-                }
-                else if (row.Genre == 2)
-                {
-                    movie.Genre = GenresOfMovies.Romance;
-                }
-                else if (row.Genre == 3)
-                {
-                    movie.Genre = GenresOfMovies.Drama;
-                }
-                else if (row.Genre == 4)
-                {
-                    movie.Genre = GenresOfMovies.Comedy;
-                }
-                else if (row.Genre == 5)
-                {
-                    movie.Genre = GenresOfMovies.Adventure;
+                    case 0:
+                        movie.Genre = GenresOfMovies.Action;
+                        break;
+                    case 1:
+                        movie.Genre = GenresOfMovies.Horror;
+                        break;
+                    case 2:
+                        movie.Genre = GenresOfMovies.Romance;
+                        break;
+                    case 3:
+                        movie.Genre = GenresOfMovies.Drama;
+                        break;
+                    case 4:
+                        movie.Genre = GenresOfMovies.Comedy;
+                        break;
+                    case 5:
+                        movie.Genre = GenresOfMovies.Adventure;
+                        break;
                 }
                 if (Convert.ToInt16(row.IsAvailable) == 0)
                 {
                     movie.IsAvailable = false;
                 }
-                else if (Convert.ToInt16(row.IsAvailable) == 1)
+                else
                 {
                     movie.IsAvailable = true;
                 }
